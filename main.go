@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/tarm/serial"
+	"log"
 	"strings"
 )
 
@@ -42,7 +43,7 @@ func main() {
 	config := &serial.Config{Name: "COM9", Baud: 9600}
 	port, err := serial.OpenPort(config)
 	if err != nil {
-		panic(err)
+		log.Fatal(err)
 	}
 	cmd := ""
 	for {
@@ -56,7 +57,7 @@ func main() {
 			if prs {
 				_, err := port.Write([]byte("\x06"))
 				if err != nil {
-					panic(err)
+					log.Fatal(err)
 				}
 				confirm := simpleRead(port)
 				if confirm == "\x05" {
@@ -66,7 +67,7 @@ func main() {
 			} else {
 				_, err := port.Write([]byte("\x15"))
 				if err != nil {
-					panic(err)
+					log.Fatal(err)
 				}
 			}
 			cmd = ""
@@ -79,7 +80,7 @@ func simpleRead(port *serial.Port) string {
 	buf := make([]byte, 1)
 	n, err := port.Read(buf)
 	if err != nil {
-		panic(err)
+		log.Fatal(err)
 	}
 	return string(buf[:n])
 }
