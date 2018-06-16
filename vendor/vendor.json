@@ -1,0 +1,13 @@
+{
+	"comment": "",
+	"ignore": "test",
+	"package": [
+		{
+			"checksumSHA1": "GEfHrZEDyPhPTdCcyeMffbFFoKE=",
+			"path": "github.com/tarm/serial",
+			"revision": "eaafced92e9619f03c72527efeab21e326f3bc36",
+			"revisionTime": "2018-01-14T05:17:09Z"
+		}
+	],
+	"rootPath": "sola.love/dmt-io-emulator"
+}
