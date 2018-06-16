@@ -1,9 +1,9 @@
 package main
 
 import (
+	"fmt"
 	"github.com/tarm/serial"
 	"strings"
-	"fmt"
 )
 
 var cardUID = "\xf2\x8a\x0d\x00"
@@ -12,6 +12,7 @@ var cardIDPart1 = cardID[:16]
 var cardIDPart2 = cardID[16:20] + strings.Repeat("\x00", 12)
 
 var table = map[string]string{
+	// is there any card? -> NOPE!
 	"\x02\x00\x02\x31\x30\x03\x02": "\x02\x00\x03\x31\x30\x4e\x03",
 	// eject card -> OK!
 	"\x02\x00\x02\x32\x30\x03\x01": "\x02\x00\x03\x32\x30\x59\x03",
@@ -26,7 +27,7 @@ var table = map[string]string{
 	"\x02\x00\x04\x35\x33\x00\x02\x03\x01": "\x02\x00\x15\x35\x33\x00\x02\x59" + cardIDPart2 + "\x03",
 }
 
-func calcBCC(data string) (string) {
+func calcBCC(data string) string {
 	bcc := 0
 	for e := range data {
 		bcc ^= e
@@ -74,7 +75,7 @@ func main() {
 	}
 }
 
-func simpleRead(port *serial.Port) (string) {
+func simpleRead(port *serial.Port) string {
 	buf := make([]byte, 1)
 	n, err := port.Read(buf)
 	if err != nil {
