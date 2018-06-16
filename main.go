@@ -1,13 +1,13 @@
 package main
 
 import (
+	"encoding/hex"
+	"encoding/json"
 	"fmt"
 	"github.com/tarm/serial"
+	"io/ioutil"
 	"log"
 	"strings"
-	"io/ioutil"
-	"encoding/json"
-	"encoding/hex"
 )
 
 type Config struct {
