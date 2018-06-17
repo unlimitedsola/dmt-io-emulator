@@ -8,6 +8,8 @@ import (
 	"io/ioutil"
 	"log"
 	"strings"
+	"path/filepath"
+	"os"
 )
 
 type Config struct {
@@ -23,7 +25,11 @@ func check(e error) {
 
 func readConfigFromFile() Config {
 	config := Config{}
-	data, err := ioutil.ReadFile("card.json")
+	exe, err := os.Executable()
+	check(err)
+	exeDir, err := filepath.Abs(filepath.Dir(exe))
+	check(err)
+	data, err := ioutil.ReadFile(filepath.Join(exeDir, "card.json"))
 	check(err)
 	err = json.Unmarshal(data, &config)
 	check(err)
