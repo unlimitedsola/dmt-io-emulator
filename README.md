@@ -1,6 +1,6 @@
 # DJMAX Technika Serial Port IO Emulator
 
-This program emulates the card reader from DJMax Technika 3 arcade machine, so it offers you the ability to login into server without having a read card reader.
+This program emulates the card reader from DJMax Technika 3 arcade machine, so it offers you the ability to login into server without having a real card reader.
 
 ## Download
 
