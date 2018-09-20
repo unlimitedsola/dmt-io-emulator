@@ -39,13 +39,16 @@ func Start(signal chan<- bool) {
 }
 
 func coin(port *serial.Port) {
+	fmt.Println("Coin!")
 	port.Write([]byte("\xaa\x01\xa5"))
 }
 
 func test(port *serial.Port) {
+	fmt.Println("Test!")
 	port.Write([]byte("\xaa\x03\xa5"))
 }
 
 func service(port *serial.Port) {
+	fmt.Println("Service!")
 	port.Write([]byte("\xaa\x18\xa5"))
 }
